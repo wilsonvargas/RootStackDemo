@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RootStack.Demo.Views.HomePage"
+             xmlns:extensions="clr-namespace:RootStack.Demo.Extensions"
+             xmlns:behaviors="clr-namespace:RootStack.Demo.Behaviors"
+             BackgroundColor="White"
+             Title="Home">
+    <ContentPage.IconImageSource>
+        <FontImageSource FontFamily="{StaticResource IconsFontFamily}" Glyph="{StaticResource Home}" />
+    </ContentPage.IconImageSource>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <BoxView BackgroundColor="{StaticResource SearchBarBackgroundColor}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+            <Frame Grid.Row="0"  Style="{StaticResource EntryFrameStyle}" Margin="20,10">
+                <Frame.Content>
+                    <StackLayout Orientation="Horizontal">
+                        <SearchBar 
+                            x:Name="SearchBar"
+                            Margin="5"
+                            BackgroundColor="White" 
+                            SearchCommand="{Binding SearchCommand}"
+                            SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
+                            PlaceholderColor="{StaticResource SearchBarTextColor}" 
+                            Placeholder="Lugares cerca de mi" 
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            FontFamily="{StaticResource NormalFont}">
+                            <SearchBar.Behaviors>
+                                <behaviors:TextChangedBehavior />
+                            </SearchBar.Behaviors>
+                        </SearchBar>
+                        <Label FontFamily="{StaticResource IconsFontFamily}" 
+                               VerticalOptions="CenterAndExpand" 
+                               Text="{StaticResource Explore}" 
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource SearchBarTextColor}">
+                            <Label.FontSize>
+                                <extensions:NamedSize>
+                                    <OnIdiom x:TypeArguments="NamedSize" Phone="Large" Tablet="Title"/>
+                                </extensions:NamedSize>
+                            </Label.FontSize>
+                        </Label>
+                    </StackLayout>
+                </Frame.Content>
+            </Frame>
+
+            <Label 
+                Grid.Row="1" Margin="20" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" 
+                Text="Negocios cercanos a ti" 
+                Style="{StaticResource ViewTitleLabelStyle}"
+                FontSize="20"/>
+
+            <CollectionView
+                Grid.Row="2"
+                Margin="25,0"
+                BackgroundColor="White"
+                ItemsSource="{Binding Users}"
+                RemainingItemsThresholdReachedCommand="{Binding UserTresholdReachedCommand}"
+                RemainingItemsThreshold="{Binding UserTreshold}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="Auto, *" RowDefinitions="*, Auto">
+                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding Picture.Large}" Aspect="AspectFit" />
+                            <StackLayout Grid.Column="1" Grid.Row="0" Padding="10">
+                                <Label LineBreakMode="WordWrap" Style="{StaticResource ViewTitleLabelStyle}" FontSize="15" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Name.First}"/>
+                                            <Span Text=" "/>
+                                            <Span Text="{Binding Name.Last}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label LineBreakMode="WordWrap" Text="{Binding Email}" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}" FontSize="13"/>
+                            </StackLayout>
+                            <BoxView Grid.ColumnSpan="2" Grid.Row="1" HeightRequest="1" HorizontalOptions="FillAndExpand" Color="{StaticResource LinesColor}"/>
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator 
+                Grid.Row="2"
+                Color="{StaticResource SearchBarTextColor}" 
+                IsRunning="True" 
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

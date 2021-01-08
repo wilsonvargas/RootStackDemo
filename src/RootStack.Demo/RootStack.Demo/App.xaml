@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extensions="clr-namespace:RootStack.Demo.Extensions"
+             x:Class="RootStack.Demo.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!--Colors-->
+            <Color x:Key="BackgroundColor">#ffffff</Color>
+            <Color x:Key="TitleTextColor">#505676</Color>
+            <Color x:Key="PrimaryTextColor">#9393b9</Color>
+            <Color x:Key="LinesColor">#d8dbf7</Color>
+            <Color x:Key="NavigationBarIconSeletectedColor">#2186eb</Color>
+            <Color x:Key="NavigationBarIconNormalColor">#9393b9</Color>
+            <Color x:Key="SearchBarBackgroundColor">#EDEDF7</Color>
+            <Color x:Key="SearchBarTextColor">#b1b1b9</Color>
+
+            <!--Fonts-->
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android" Value="Montserrat-Regular.ttf#Montserrat" />
+                <On Platform="iOS" Value="Montserrat-Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="Android" Value="Montserrat-Bold.ttf#Montserrat" />
+                <On Platform="iOS" Value="Montserrat-Bold" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="IconsFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Font Awesome 5 Pro Light" />
+                <On Platform="Android" Value="fontawesome.otf#Font Awesome 5 Pro Light" />
+            </OnPlatform>
+
+            <!--Icons-->
+            <x:String x:Key="User">&#xf007;</x:String>
+            <x:String x:Key="Home">&#xf015;</x:String>
+            <x:String x:Key="Explore">&#xf002;</x:String>
+            <x:String x:Key="Queue">&#xf022;</x:String>
+            
+            <!--Styles-->
+            <Style x:Key="EntryFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HasShadow" Value="False" />
+            </Style>
+            <Style x:Key="IconLabelStyle" TargetType="Label">
+                <Setter Property="FontSize">
+                    <extensions:NamedSize>
+                        <OnIdiom x:TypeArguments="NamedSize" Phone="Medium" Tablet="Large" />
+                    </extensions:NamedSize>
+                </Setter>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontFamily" Value="{StaticResource IconsFontFamily}"/>
+            </Style>
+
+            <Style x:Key="DefaultLabelStyle"  TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="FontSize">
+                    <extensions:NamedSize>
+                        <OnIdiom x:TypeArguments="NamedSize" Phone="Small" Tablet="Medium" />
+                    </extensions:NamedSize>
+                </Setter>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+            </Style>
+
+            <Style x:Key="DefaultBoldLabelStyle"  TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="FontSize">
+                    <extensions:NamedSize>
+                        <OnIdiom x:TypeArguments="NamedSize" Phone="Medium" Tablet="Large" />
+                    </extensions:NamedSize>
+                </Setter>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+            </Style>
+
+
+            <Style x:Name="SecundaryLabelStyle" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+                <Setter Property="FontSize">
+                    <extensions:NamedSize>
+                        <OnIdiom x:TypeArguments="NamedSize" Phone="Small" Tablet="Medium"/>
+                    </extensions:NamedSize>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ViewTitleLabelStyle" TargetType="Label">
+                <Setter Property="FontSize">
+                    <extensions:NamedSize>
+                        <OnIdiom x:TypeArguments="NamedSize" Phone="Subtitle" Tablet="Title"/>
+                    </extensions:NamedSize>
+                </Setter>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Start" />
+                <Setter Property="TextColor" Value="{StaticResource TitleTextColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+            </Style>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
